@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from enum import Enum
 from random import choice, sample
-from sys import argv, exit
+import typer
+from typing_extensions import Annotated
 
 
 class Workout(Enum):
@@ -77,29 +78,7 @@ workout_exercises: dict[Workout, list[Exercise]] = {
 }
 
 
-def get_input_workout() -> Workout:
-    """Get the target area from the command line arguments or user input."""
-
-    if len(argv) > 1:
-        input_workout = argv[1]
-    else:
-        input_workout = input("Enter workout (Push, Pull, Core, Legs, Yoga, Cardio): ")
-
-    input_workout = input_workout.strip().upper()
-
-    try:
-        workout = Workout[input_workout]
-        return workout
-    except KeyError:
-        print(
-            "Invalid workout. Please enter one of the following:\nPush, Pull, Core, Legs, Yoga, Cardio."
-        )
-        exit(1)
-
-
-def main():
-    workout = get_input_workout()
-
+def main(workout: Annotated[Workout, typer.Option(prompt=True, case_sensitive=False)]):
     #
     # The header
     #
@@ -167,4 +146,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    typer.run(main)
