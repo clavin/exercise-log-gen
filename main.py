@@ -20,11 +20,11 @@ class Exercise:
 
     @classmethod
     def weighted(cls, desc: str, lbs: int | None = None):
-        props = ["3 sets \u00D7 10 reps"]
+        props = ["3 sets \u00d7 10 reps"]
 
         if lbs is not None:
             props.append(f"{lbs}lb")
-        
+
         return cls(desc, props)
 
 
@@ -72,7 +72,7 @@ workout_exercises: dict[Workout, list[Exercise]] = {
         Exercise("Stair stepper", ["30 min", "Level 5", "*Cooldown*: 5 min"]),
         Exercise("Elliptical", ["30 min", "Level 5", "*Cooldown*: 5 min"]),
         Exercise("Cycling", ["30 min", "Level 5", "*Cooldown*: 5 min"]),
-    ]
+    ],
     # Note that Yoga has no specific exercises
 }
 
@@ -83,15 +83,19 @@ def get_input_workout() -> Workout:
     if len(argv) > 1:
         input_workout = argv[1]
     else:
-        input_workout = input("Enter workout (Push, Pull, Core, Legs, Yoga, Cardio): ").strip()
+        input_workout = input(
+            "Enter workout (Push, Pull, Core, Legs, Yoga, Cardio): "
+        ).strip()
 
     input_workout = input_workout.upper()
 
     try:
         workout = Workout[input_workout]
         return workout
-    except:
-        print("Invalid workout. Please enter one of the following:\nPush, Pull, Core, Legs, Yoga, Cardio.")
+    except KeyError:
+        print(
+            "Invalid workout. Please enter one of the following:\nPush, Pull, Core, Legs, Yoga, Cardio."
+        )
         exit(1)
 
 
@@ -120,13 +124,15 @@ def main():
                 cardio_desc = "Stair stepper"
 
         # Find the matching cardio exercise to the description
-        cardio_exercise = next(ex for ex in workout_exercises[Workout.CARDIO] if ex.desc == cardio_desc)
+        cardio_exercise = next(
+            ex for ex in workout_exercises[Workout.CARDIO] if ex.desc == cardio_desc
+        )
 
         print(f"# {cardio_exercise.desc}")
         for prop in cardio_exercise.props:
             print(f"* {prop}")
         print("")
-    
+
     #
     # Strength section
     #
@@ -152,7 +158,7 @@ def main():
         print("# Yoga")
         print("https://www.youtube.com/@yogawithadriene")
         print("")
-    
+
     #
     # Stretch section
     #
