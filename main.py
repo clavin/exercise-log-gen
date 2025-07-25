@@ -65,7 +65,7 @@ workout_exercises: dict[Workout, list[Exercise]] = {
         Exercise.weighted("Standing calf raises", lbs=25),
         Exercise.weighted("Leg curls machine", lbs=35),
         Exercise.weighted("Leg extensions machine", lbs=35),
-        Exercise.weighted("Romainian deadlifts", lbs=50),
+        Exercise.weighted("Romanian deadlifts", lbs=50),
     ],
     Workout.CARDIO: [
         Exercise("Running", ["30 min", "7mph", "*Cooldown*: 5 min"]),
@@ -83,11 +83,9 @@ def get_input_workout() -> Workout:
     if len(argv) > 1:
         input_workout = argv[1]
     else:
-        input_workout = input(
-            "Enter workout (Push, Pull, Core, Legs, Yoga, Cardio): "
-        ).strip()
+        input_workout = input("Enter workout (Push, Pull, Core, Legs, Yoga, Cardio): ")
 
-    input_workout = input_workout.upper()
+    input_workout = input_workout.strip().upper()
 
     try:
         workout = Workout[input_workout]
@@ -140,8 +138,9 @@ def main():
         print("# Strength")
 
         exercises = workout_exercises[workout]
-        # Only sample up to 6 random exercises
-        exercises = sample(exercises, min(6, len(exercises)))
+        # Only sample up to 6 random exercises if there are more than 6
+        if len(exercises) > 6:
+            exercises = sample(exercises, 6)
 
         for i, exercise in enumerate(exercises, start=1):
             print(f"{i}. {exercise.desc}")
