@@ -50,13 +50,13 @@ workout_exercises: dict[Workout, list[Exercise]] = {
         Exercise.weighted("Seated knee-bicep curls", lbs=25),
     ],
     Workout.CORE: [
-        Exercise.weighted("Russian twists", lbs=15),
-        Exercise.weighted("Sit-ups", lbs=15),
-        Exercise.weighted("Oblique dumbbell crunches", lbs=40),
+        Exercise.weighted("Russian twists", lbs=25),
+        Exercise.weighted("Sit-ups", lbs=25),
+        Exercise.weighted("Oblique dumbbell crunches", lbs=45),
         Exercise.weighted("Dead bugs"),
         Exercise.weighted("Hanging knee raises"),
         Exercise.weighted("Hanging leg raises"),
-        Exercise.weighted("Cable crunches", lbs=75),
+        Exercise.weighted("Cable crunches", lbs=65),
         Exercise.weighted("Cable oblique twists", lbs=15),
     ],
     Workout.LEGS: [
