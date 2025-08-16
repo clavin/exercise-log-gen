@@ -24,7 +24,7 @@ class Exercise:
         props = ["3 sets \u00d7 10 reps"]
 
         if lbs is not None:
-            props.append(f"{lbs}lb")
+            props.append(f"{lbs} lbs")
 
         return cls(desc, props)
 
