@@ -83,7 +83,6 @@ def main(workout: Annotated[Workout, typer.Option(prompt=True, case_sensitive=Fa
     # The header
     #
     print(f"* **Target Area**: {workout.value}")
-    print("* **Focus**: …")
     print("")
 
     #
